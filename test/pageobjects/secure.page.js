@@ -7,7 +7,7 @@ class SecurePage extends Page {
     /**
      * define selectors using getter methods
      */
-    get flashAlert () { return $('#flash') }
+    get flashAlert () { return $('.submit_message_error') }
 }
 
 module.exports = new SecurePage();
