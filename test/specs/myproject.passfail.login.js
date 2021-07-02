@@ -14,7 +14,20 @@ describe('Dostep do systemu tylko dla zautoryzowanych loginow', () => {
             'Brak użytkownika o tym loginie!');
     });
 
-    //Test 2. Bledne haslo komunikat: Nieprawidłowe hasło!
+    it('Blad hasla dla istniacego loginu', async () => {
+        //Otworz strone
+        await LoginPage.open();
+        //Wprowadz dane logowania dla istnijacego loginu
+        await LoginPage.login('demo', 'SuperSecretPassword!');
+        //Komunikat bledu sie wyswietla
+        await expect(SecurePage.flashAlert).toBeExisting();
+        //Dodatkowy przycisk przypomnij haslo jest wyswietlony
+        await expect(SecurePage.remindPassword).toBeExisting();
+        //Komunikat bleduj zawiera tresc
+        await expect(SecurePage.flashAlert).toHaveTextContaining(
+            'Nieprawidłowe hasło!');
+    });
+
 });
 
 
