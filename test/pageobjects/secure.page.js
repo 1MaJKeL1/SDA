@@ -9,6 +9,8 @@ class SecurePage extends Page {
      */
     get flashAlert () { return $('.submit_message_error') }
     get remindPassword () { return $('#myRemindPassword') }
+    //TODO: to bedzie przeniesione do innej strony
+    get topMenu () { return $('#myTopMenuButton') }
 }
 
 module.exports = new SecurePage();

@@ -1,5 +1,6 @@
 const LoginPage = require('../pageobjects/login.page');
 const SecurePage = require('../pageobjects/secure.page');
+const MainPage = require('../pageobjects/main.page');
 
 describe('Dostep do systemu tylko dla zautoryzowanych loginow', () => {
     it('Blad logowania dla nieistniacego loginu', async () => {
@@ -28,6 +29,14 @@ describe('Dostep do systemu tylko dla zautoryzowanych loginow', () => {
             'Nieprawidłowe hasło!');
     });
 
+    it('Poprawne logowanie', async () => {
+           //Otworz strone
+           await LoginPage.open();
+           //Wprowadz dane logowania dla istnijacego loginu
+           await LoginPage.login('demo', 'demo123');
+           await expect(MainPage.hamburgerMenu).toBeExisting();
+           await MainPage.expandMenu();
+    });
 });
 
 
